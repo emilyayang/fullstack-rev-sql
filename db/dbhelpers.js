@@ -1,11 +1,25 @@
 // complete and fix the dbhelpers
-const models = require('./models');
+const Products = require('./models.js');
 
-getProductsHelper = () => 
+getProductsHelper = () => {
+  return Products.findAll()
+}
 
-postProductsHelper = () => 
+postProductsHelper = (item, min_cost, curr_bid, ends_in, image) => {
+  return Products.create({ item, min_cost, curr_bid, ends_in, image })
+}
 
-updateProductHelper = () => 
+updateProductHelper = (id, curr_bid) => {
+  return Products.update({ curr_bid }, {
+    where: { id }
+  })
+}
 
-deleteProductHelper = () => 
+deleteProductHelper = (id) => {
+  return Products.destroy({
+    where: { id }
+  })
+}
+
+module.exports = { getProductsHelper, postProductsHelper, updateProductHelper, deleteProductHelper }
 
